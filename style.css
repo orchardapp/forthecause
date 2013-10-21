@@ -555,9 +555,11 @@ dl dd {
   word-wrap: break-word;
   line-height: 1;
 }
+/*
 #header .site-description {
   margin-bottom: 1.618em;
 }
+*/
 #header .site-header:after {
   content: "\0020";
   display: block;
