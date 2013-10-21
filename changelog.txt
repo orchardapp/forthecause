@@ -1,0 +1,30 @@
+*** For The Cause Changelog ***
+
+2013.10.16 - version 1.0.2
+* includes/homepage/featured-products.php - Fixes limit on homepage featured products.
+* includes/theme-options.php - Updates documentation url.
+* includes/theme-woocommerce.php - Updates WooCommerce sidebar loading.
+
+2013.09.26 - version 1.0.1
+* 404.php - Responsive design tweaks.
+* archive.php - Responsive design tweaks.
+* comments.php - Responsive design tweaks.
+* footer.php - Responsive design tweaks.
+* includes/theme-actions.php - Responsive design tweaks. Added background options to "Category Posts" section.
+* page.php - Responsive design tweaks.
+* search.php - Responsive design tweaks.
+* single.php  - Responsive design tweaks.
+* template-blog.php - Responsive design tweaks.
+* template-business.php - Responsive design tweaks.
+* template-contact.php - Responsive design tweaks.
+* template-fullwidth.php - Responsive design tweaks.
+* css/layout.css - Responsive design tweaks.
+* style.css - Responsive design tweaks. Styling for "Component" widget.
+* screenshot.php - Updated theme screenshot.
+* includes/theme-options.php - Added background options to "Category Posts" section. Fixed "Featured Products" setting.
+* includes/theme-widgets.php - Added "Component" widget.
+* images/bg-slider.png - Added missing background image.
+* index.php - Fixed "Featured Products" setting.
+
+2013.09.25 - version 1.0.0
+ * First release!

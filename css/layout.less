@@ -1,0 +1,709 @@
+/*
+The styles in this stylesheet only apply to resolutions 768px and up
+
+CALCULATING DIMENSIONS:
+----------------------
+The layout is fluid. The sote wrapper (.col-full) has a fixed pixel max-width.
+All subsequent dimensions are calculated based on that fixed pixel width, using the formula: target / context = result
+Credit - http://www.alistapart.com/articles/fluidgrids/
+
+-----
+INDEX
+-----
+
+1. Global dropdown styles
+2. Top Navigation
+3. Main navigation dropdown menus
+ -3.1 General dropdown menus
+4. Containers & Columns
+5. Footer widgets
+6. IE Fixes
+
+/*----------------------*/
+
+@import "mixins";
+
+/*----------------------*/
+
+@media only screen and (min-width: 768px) {
+
+	#inner-wrapper {
+		left:0 !important; // Reset the mobile nav effects
+	}
+
+	/* 1. GLOBAL DROPDOWN STYLES (these are purely for the dropdown layout and you should only edit the width of the dropdowns) */
+	ul.nav {
+	    position: relative;
+	    margin-bottom:0;
+	    li {
+	    	position: relative;
+	    	float: left;
+	    	zoom:1;
+	    	list-style: none;
+	    	a {
+	    		display: block;
+	    		padding:.53em 1em;
+	    	}
+	    	&.parent { // Styles applied to all parent list items
+	    	}
+	    }
+	    /* LEVEL 2 */
+	    ul {
+	    	width:11.089em;
+	    	visibility: hidden;
+	    	position: absolute;
+	    	top:100%;
+	    	left: 0;
+	    	z-index: 9999;
+	    	margin:0;
+			    -webkit-transition: all .25s ease;
+			       -moz-transition: all .25s ease;
+			        -ms-transition: all .25s ease;
+			         -o-transition: all .25s ease;
+			            transition: all .25s ease;	
+			            .opacity(0);	    	
+	    	li {
+	    		float: none;
+	    		a {
+	    			width: 100%;
+	    			display: inline-block;
+	    			.borderbox();
+	    		}
+	    		&.parent { // Styles applied to parent items in level 2
+	    		}
+	    	}
+	    }
+	    /* LEVEL 3 */
+	    ul ul {
+	    	left:100%;
+	    	top:0;
+	    	li {
+	    		&.parent { // Styles applied to parent items in level 3
+	    		}
+	    	}
+	    }
+	    li:hover > ul {
+	    	visibility: visible;
+	    	.opacity(1);	
+	    }
+	}
+
+	/* 2. TOP NAVIGATION (Add top navigation presentational styles here) */
+	#top {
+	    background: lighten( @bg_dark, 30% );
+	    margin: 0 -1.618em;
+	    padding:0 1.618em;
+	    display: block;
+	    #top-nav, .top-navigation {
+	    	display: block;
+	    	h3 {
+	    		display: none;
+	    	}
+	    }
+	    ul.nav {
+	    	font-size: 1em; // this adjusts the scale of the entire navigation and everything just works like magic
+	    	> li { // The following styles are applied ONLY to the top level list items
+	    		a {
+	    			border-right: 1px solid #444;
+	    			color: #eee;
+	    			&:hover {
+	    				background: #555;
+	    			}
+	    		}
+	    		&:first-child {
+	    			a {
+	    				border-left: 1px solid #444;
+	    			}
+	       		}
+	    		&:hover {
+	    			background: #555;
+	    		}
+	    	}
+	    	li {
+	    		&.current-menu-item {
+	    			> a {
+	    				background: #666;
+	    			}
+	    		}
+	    	}
+	    	/* LEVEL 2 */
+	    	ul {
+	    		background: #555;
+	    		li {
+	    			a {
+	    			}
+	    		}
+	    	}
+	    	/* LEVEL 3 */
+	    	ul ul {
+	    	}
+	    	li:hover > ul {
+	    	}
+	    }
+	}
+
+	/* 3. MAIN NAVIGATION DROPDOWN MENUS (Add main navigation presentational styles here) */
+
+	/**
+	 * Resets
+	 * As the mobile nav features extensive styling, much of it needs to be reset for desktop orientation
+	 */
+	.show-nav {
+		#inner-wrapper {
+			.border_radius(0);
+		}
+		#navigation {
+			.top-navigation {
+				display: none; // Just in case someone resizes to mobile, opens the nav and then resizes to desktop
+			}
+		}
+	}
+
+	/**
+	 * The main navigation styling
+	 */
+	#navigation  {
+		position: relative;
+		left:auto;
+		float: right;
+		padding-top:0;
+		background: none;
+		-webkit-box-shadow:none;
+		box-shadow:none;
+		clear: none;
+		.menus { // The menu container
+			float: right;
+			.clearfix;
+			h3 {
+				display: none;
+			}
+		}
+	    ul.nav {
+	    	display: inline;
+	    	> li { // The following styles are applied ONLY to the top level list items
+	    		border-right: 1px solid lighten(@bg_dark, 30%);
+	    		&:first-child {
+	    			border-left: 1px solid lighten(@bg_dark, 30%);
+	    		}
+	    		a {
+	    			&:hover {
+	    				color: lighten(@bg_dark, 55%);
+	    			}
+	    		}
+	    		&:hover {
+	    			color: lighten(@bg_dark, 55%);
+	    		}
+	    		&.current-menu-item {
+	    			a {
+	    				color: lighten(@bg_dark, 55%);
+	    			}
+	    		}
+	    	}
+	    	li {  // Overwrite mobile styles
+				a {
+					padding: 1.9em 1.470588235em;
+					text-shadow:none;
+					border: 0;
+	    			color: #fafafa;
+	    			font-size: 1.214285714em; //17px
+				}
+				&.current-menu-item {
+					> a {
+						background: none;
+						-webkit-box-shadow:none;
+						box-shadow:none;
+						text-shadow:none;
+						&:after {
+							display: none;
+						}
+					}
+				}
+				ul {
+					a, ul li a {
+						padding:.857em 1em;
+					}
+				}				
+			}
+	    	/* LEVEL 2 */
+	    	ul {
+	    		background: lighten(@bg_dark, 8.5%);
+	    		.border_radius(.327em);
+	    		width:13em; 		
+	    		li {
+	        		border-bottom: 1px solid lighten(@bg_dark, 18%);
+	        		&:last-child {
+	        			border: 0;
+	        		}
+	    			a {
+	    				font-size: 1em;
+	    			}
+	    		} 		
+	    	}
+			ul {
+				&:before {
+					content: '';
+					width: 0;
+					height: 0;
+					border-style: solid;
+					border-width: 0 7px 7px 7px;
+					border-color: transparent transparent lighten(@bg_dark, 8.5%) transparent;
+					position: absolute;
+					left: 47%;
+					z-index: 10000;
+					top: -7px;
+				}
+				&:after {
+					content: '';
+					display: block;
+					width: 100%;
+					height: 100%;
+					top: -20px;
+					position: absolute;
+					background: transparent;
+					z-index: -1;
+				}
+			}
+	    	/* LEVEL 3 */
+	    	ul ul {
+	    		.border_radius(0 .327em .327em .327em);
+	    		top:-1px;  // -1px top to offset the border and keep everything lined up
+	    		left:100%; // reapply left 100% as we're offsetting the first child by 1px
+	    		&:after, &:before {
+	    			content: none;
+	    		}
+	    	}
+	    	li > ul {
+	    		top: 100%;
+			}
+	    	li:hover > ul {
+				top: 115%;		    
+	    	}
+	    	li:hover > ul ul {
+	    		top: 0;
+	    	}
+	    }
+	    .widget_product_search {
+			margin-bottom:1.618em;
+			border:0;
+			#searchform {
+				border:1px solid @border_main;
+				padding:0;
+				background:none;
+				#s {
+					padding:.857em 2.618em .857em .857em;
+					.border_radius(0);
+					background: none;
+					border:0;
+					-webkit-box-shadow:none;
+					box-shadow:none;
+				}
+				#searchsubmit {
+					display: inline-block;
+				}
+			}
+		}
+	    ul.cart, ul.rss {
+	    	li:first-child { border-left: 0; }
+	    }
+	    .nav-close, .nav-home {
+			display: none;
+		}
+	}
+	// Hide the nav toggle link in desktop orientation
+	.nav-toggle { display: none; }
+
+	// Reset the 3d transforms
+	.csstransforms3d.csstransitions {
+		#navigation, .show-nav #navigation, .show-nav #inner-wrapper {
+			left: 0;
+		    -webkit-transform: translate3d(0%, 0, 0);
+		    -moz-transform: translate3d(0%, 0, 0);
+		    -ms-transform: translate3d(0%, 0, 0);
+		    -o-transform: translate3d(0%, 0, 0);
+		    transform: translate3d(0%, 0, 0);
+		}
+	}
+
+	/* 4. CONTAINERS & COLUMNS */
+	#header {
+		position: relative;
+		z-index: 1;
+		padding: 0;
+		#logo {
+			margin: 2.244em 0 0;
+		}
+	    .site-header {
+	        float: left;
+	        h1, h2, h3 {
+	            float:none;
+	        }
+	        &.with-description {
+	        	.site-title { margin-top: .618em; }
+	        }
+	    }
+	    .site-title, .site-description {
+	    	text-align: left;
+	    }
+	    .site-title { margin: .857em 0 0; }
+	    ul.rss {
+	        margin-right:0;
+	        padding-right:0;
+	        > li:first-child { border-left: 0; }
+	        li {
+	            border-right: 1px solid lighten(@bg_dark, 41.5%);
+	        }
+	    }
+	}
+	#main.fullwidth, .layout-full #main, .col-full {
+	    max-width:81.428571429em; //1440px
+	    margin:0 auto;
+	    width:100%;
+	}
+	#main {
+	    width: 71.05%; // golden ratio
+	}
+	#sidebar {
+	    margin-top: 0;
+	    width: 22.2%;  // golden ratio
+	}
+	.entry img {
+	    max-width: 100%;
+	}
+	.single {
+		.post {
+			.entry-meta {
+				width: 20%;
+				float: left;
+			}
+			.entry {
+				width: 76%;
+				float: right;
+			}
+		}
+	}
+	.layout-full .entry img {
+	    max-width: 100%;
+	}
+	.layout-right-content {
+	    #main  {
+	    	float: right;
+	    }
+	    #sidebar  {
+	    	float: left;
+	    }
+	}
+	.layout-full #main  {
+	    width: 100%; // full-width template
+	}
+	.col-left {
+	    float: left;
+	}
+	.col-right {
+	    float: right;
+	}
+	.page-template-template-sitemap-php  {
+		#sitemap-pages, .product-categories  {
+			float: left;
+			width: 48%;
+		}
+		#sitemap-categories , .products {
+			float: right;
+			width: 48%;
+		}
+		#sitemap-posts  {
+			clear: both;
+		}
+		.woocommerce {
+			.clearfix;
+		}
+	}
+	.page-template-template-contact-php {
+	    .location-twitter  {
+	    	.col-left  {
+	    		float: left;
+	    	}
+	    	#office-location {
+	    	    width: 48%;
+	    	    margin: 0 1em 0 0;
+	    	}
+	    	.contact-social  {
+	    	    float: left;
+	    	    width: 48%;
+	    	    #twitter  {
+	    	    	margin: 0;
+	    	    }
+	    	}
+	    }
+	}
+
+	#top-section {
+		header {
+			float: left;
+		}
+		.widget_search, .widget_product_search {
+			float: right;
+			width: 23%;
+			margin: 0;
+		}
+
+	}
+
+	#post-author {
+		padding-left:3.631em;
+		.profile-image {
+			position: absolute;
+			top: 2em;
+			left: -5%;
+			margin:0 1.618em .382em 0;
+		}
+	}
+	
+	/* 5. FOOTER WIDGETS */
+
+	#footer {
+		float: left;
+		width: 14%;
+	}
+
+	#footer-widgets {
+		width: 80%;
+		float: right;
+	    .block {
+	    	margin-right:3.8%;
+	    	float: left;
+	    }
+	    &.col-1 {
+	    	.block {
+	    		width: 100%;
+	    		float: none;
+	    	}
+	    	.footer-widget-1 {
+	    		margin-right:0;
+	    	}
+	    }
+	    &.col-2 {
+	    	.block {
+	    		width: 48%;
+	    	}
+	    	.footer-widget-2 {
+	    		margin-right:0;
+	    	}
+	    }
+	    &.col-3 {
+	    	.block {
+	    		width: 30.75%;
+	    	}
+	    	.footer-widget-3 {
+	    		margin-right:0;
+	    	}
+	    }
+	    &.col-4 {
+	    	.block {
+	    		width: 22.05%;
+	    	}
+	    	.footer-widget-4 {
+	    		margin-right:0;
+	    	}
+	    }
+
+	}
+
+	.col {
+		float: left;
+		margin-right: 3.8% !important;
+		&.first {
+			clear: left;
+		}
+		&.last {
+			clear: right;
+			margin-right: 0 !important;
+		}
+	}
+	.col1 {
+		width: 100%;
+	}
+	.col2 {
+		width: 48%;
+	}
+	.col3 {
+		width: 30.75%;
+	}
+	.col4 {
+		width: 22.05%;
+	}
+
+	.entry, .page-template-template-business-php {
+		.features, .testimonials {
+			.clearfix;
+			.feature, .quote {
+				margin-right: 3.8%;
+				float: left;
+			}
+			&.columns-2 {
+				.feature, .quote {
+					width: 48%;
+				}
+			}			
+			&.columns-3 {
+				.feature, .quote {
+					width: 30.75%;
+				}
+			}
+			&.columns-4 {
+				.feature, .quote {
+					width: 22.05%;
+				}
+			}									
+		}
+	}
+
+	/* Homepage */
+	.homepage-area {
+		.home-section {
+			padding: 5.874em 0;
+		}
+		.widget_woothemes_testimonials, .widget_woothemes_features {
+			.quote, .feature {
+				width: 22.05%;
+				float: left;
+				margin-right: 3.8%;
+				margin-bottom: 0;
+				&:nth-child(4n+1) {
+					clear: left;
+				}
+				&:nth-child(4n+4) {
+					clear: right;
+					margin: 0;
+				}			
+			}
+		}
+		.widget_woothemes_features {
+			padding-top: 5.874em;
+		}
+	}
+
+    #promotion {
+    	.section-wrapper {
+    		padding: 4.236em 0;
+    	}
+        .left-section {
+            width: 70%;
+            float: left;
+        }
+        .right-section {
+            float: right;
+        }
+        .btn {
+            display: inline;
+        }
+    }
+
+   	.widget_woo_contactform {
+    	p {
+    		&.contact-name, &.contact-email {
+    			width: 48%;
+    			float: left;
+    			margin-right: 3.8%;
+    		}
+    		&.contact-email {
+    			margin-right: 0;
+    			clear: right;
+    		}
+    		&.contact-submit {
+    			input {
+    				width: auto;
+    			}
+    		}
+    	}
+    }
+
+    #category-posts {
+    	padding: 5.874em 0 3.631em;
+    	.category {
+    		margin: 0 0 2.618em;
+    	}
+    }
+
+	#featured-products {
+		padding-top: 5.874em;
+		ul.products {
+			li.product {
+				width: 22.05%;
+			}
+		}		
+	}
+
+	#homepage-columns {
+		.col { margin-bottom: 0; }
+	}
+
+	.widget_woodojo_tabs, .woocommerce_tabs, .woocommerce-tabs {
+		ul.nav-tabs, ul.tabs {
+			li {
+				a {
+					font-size: 1.214285714em;
+				}
+			}
+		}
+	}
+
+	/* 6. IE FIXES */
+
+	.ie7 {
+	    #top-nav {
+	    	position: relative;
+	    	z-index: 9999999;
+	    }
+	    #header {
+	    	position: relative;
+	    	z-index: 9999999;
+	    }
+	}
+
+	/* 7. FEATURED SLIDER */
+	#featured-slider {
+		margin: 0;
+		.slide {
+			background-image: url(../images/bg-slider.png);
+		}
+		.slide-media {
+			max-width: 67%;
+			margin: 2.244em auto 0; 
+		}		
+		.slide-content {
+			max-width: 67%;
+			margin: 0 auto;
+			text-align: center;
+			padding: 5.997em 0;
+			background: none;			
+			header {
+				h1 {
+					font-size: 2.618em;
+				}
+			}		
+			.entry {
+				font-size: 1.387em;	
+			}
+			.woothemes_progress_bar {
+				max-width: 60%;
+				margin: 0 auto;
+			}			
+		}
+		.flex-direction-nav {
+			.flex-prev {
+				left: 2.244em;
+			}
+			.flex-next {
+				right: 2.244em;
+			}
+			a {
+				top: 50%;
+			}			
+		}
+		.flex-control-nav {
+			bottom: 1.618em;
+			top: auto;		
+		}
+	}
+
+}

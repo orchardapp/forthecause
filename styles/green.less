@@ -1,0 +1,181 @@
+@import url(../css/mixins.less);
+
+@color_links:	#3A972C;	// Links / Main theme colour
+
+::selection, ::-moz-selection  {
+	background: @color_links;
+}
+
+a {
+	color: @color_links;	
+	&:hover {
+		color: @color_links - #222;
+	}
+}
+
+#header {
+	.nav-toggle {
+		&:after {
+			background: @color_links;
+		}
+	}
+}
+
+#blog-posts {
+	.post {
+		.media {
+			.post-category {
+				background: @color_links;
+			}
+		}		
+	}
+}
+
+.nav-entries {
+	a {
+		&:hover {
+			.nav-prev, .nav-next {
+				&:before, &:after {
+					background: @color_links;
+					border-color: darken( @color_links, 5% );
+				}
+			}
+		}		
+	}
+}
+
+.woo-pagination {
+	.page-numbers {
+		&.current  {
+			background: @color_links;
+			border-color: darken( @color_links, 5% );
+		}
+	}
+}
+
+#post-entries {
+	a {
+		background: @color_links;
+		&:hover {
+			background: darken( @color_links, 5% );
+		}
+		&:before {
+			background: darken( @color_links, 5% );
+		}
+	}
+}
+
+#navigation {
+	ul.nav {
+		li {
+			a {
+				-webkit-tap-highlight-color: @color_links;
+			}
+		}
+	}
+}
+
+.widget_woodojo_tweets {
+	.follow-link {
+		a {
+			background: @color_links;
+			&:hover {
+				background: darken(@color_links, 10%);	
+			}	
+		}
+	}
+}
+
+#timeline { 
+	.archives_list {
+		.comments {
+			a {
+				&:after  {
+					border:.3em solid @color_links;
+				}
+			}
+		}
+	}
+}
+
+table {
+    thead {
+      th {
+        background: @color_links;
+        border-right:1px solid @color_links - #111;
+        border-bottom:1px solid @color_links - #111;
+      }
+	}
+    tfoot {
+    	th, td { border-right:1px solid @color_links - #111; }
+    	tr {
+    		background: @color_links;	
+    	}
+    }
+}
+
+#header {
+	.cart-contents {
+		.count {
+			text-shadow:0 1px @color_links - #333;
+		}
+	}
+}
+
+.star-rating {
+	span:before {
+		color: @color_links;
+	}
+}
+
+.widget_layered_nav {
+	ul {
+		li {
+			&.chosen {
+				a {
+					background: @color_links;
+				}
+			}
+		}
+	}
+}
+
+.widget_price_filter {
+   .ui-slider .ui-slider-handle {
+		border-color: @color_links;
+	}
+   .ui-slider .ui-slider-range {
+		background: @color_links;
+	}
+}
+
+.onsale {
+    background: @color_links;
+}
+
+a.button,
+a.comment-reply-link,
+#commentform #submit,
+.submit,
+input[type=submit],
+input.button,
+button.button,
+#wrapper .woo-sc-button {
+	background: @color_links;
+	&:hover {
+		background: darken(@color_links,5%);
+	}
+}
+
+@media only screen and (min-width: 768px) {
+
+	#header {
+		.cart-contents {
+			&:after {
+				color: @color_links;
+			}
+		}
+	}
+
+}
+

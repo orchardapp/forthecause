@@ -1,0 +1,750 @@
+/*
+The styles in this stylesheet only apply to resolutions 768px and up
+
+CALCULATING DIMENSIONS:
+----------------------
+The layout is fluid. The sote wrapper (.col-full) has a fixed pixel max-width.
+All subsequent dimensions are calculated based on that fixed pixel width, using the formula: target / context = result
+Credit - http://www.alistapart.com/articles/fluidgrids/
+
+-----
+INDEX
+-----
+
+1. Global dropdown styles
+2. Top Navigation
+3. Main navigation dropdown menus
+ -3.1 General dropdown menus
+4. Containers & Columns
+5. Footer widgets
+6. IE Fixes
+
+/*----------------------*/
+/**
+ * Variables
+ */
+/**
+ * Functions
+ */
+/**
+ * Mixins
+ */
+/**
+ * Animations
+ */
+@-webkit-keyframes spin-360 {
+  from {
+    -webkit-transform: rotate(0);
+    /* Saf3.1+, Chrome */
+  
+    -moz-transform: rotate(0);
+    /* FF3.5+ */
+  
+    -ms-transform: rotate(0);
+    /* IE9 */
+  
+    -o-transform: rotate(0);
+    /* Opera 10.5 */
+    transform: rotate(0);
+    zoom: 1;
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+    /* Saf3.1+, Chrome */
+  
+    -moz-transform: rotate(180deg);
+    /* FF3.5+ */
+  
+    -ms-transform: rotate(180deg);
+    /* IE9 */
+  
+    -o-transform: rotate(180deg);
+    /* Opera 10.5 */
+    transform: rotate(180deg);
+    zoom: 1;
+  }
+  to {
+    -webkit-transform: rotate(0);
+    /* Saf3.1+, Chrome */
+  
+    -moz-transform: rotate(0);
+    /* FF3.5+ */
+  
+    -ms-transform: rotate(0);
+    /* IE9 */
+  
+    -o-transform: rotate(0);
+    /* Opera 10.5 */
+    transform: rotate(0);
+    zoom: 1;
+  }
+}
+/*----------------------*/
+@media only screen and (min-width: 768px) {
+  #inner-wrapper {
+    left: 0 !important;
+  }
+  /* 1. GLOBAL DROPDOWN STYLES (these are purely for the dropdown layout and you should only edit the width of the dropdowns) */
+  ul.nav {
+    position: relative;
+    margin-bottom: 0;
+    /* LEVEL 2 */
+  
+    /* LEVEL 3 */
+  
+  }
+  ul.nav li {
+    position: relative;
+    float: left;
+    zoom: 1;
+    list-style: none;
+  }
+  ul.nav li a {
+    display: block;
+    padding: .53em 1em;
+  }
+  ul.nav ul {
+    width: 11.089em;
+    visibility: hidden;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 9999;
+    margin: 0;
+    -webkit-transition: all .25s ease;
+    -moz-transition: all .25s ease;
+    -ms-transition: all .25s ease;
+    -o-transition: all .25s ease;
+    transition: all .25s ease;
+    opacity: 0;
+    filter: alpha(opacity=@opacity * 100);
+  }
+  ul.nav ul li {
+    float: none;
+  }
+  ul.nav ul li a {
+    width: 100%;
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+    /* Safari/Chrome, other WebKit */
+  
+    -moz-box-sizing: border-box;
+    /* Firefox, other Gecko */
+  
+    box-sizing: border-box;
+    /* Opera/IE 8+ */
+  
+  }
+  ul.nav ul ul {
+    left: 100%;
+    top: 0;
+  }
+  ul.nav li:hover > ul {
+    visibility: visible;
+    opacity: 1;
+    filter: alpha(opacity=@opacity * 100);
+  }
+  /* 2. TOP NAVIGATION (Add top navigation presentational styles here) */
+  #top {
+    background: #5c5c5c;
+    margin: 0 -1.618em;
+    padding: 0 1.618em;
+    display: block;
+  }
+  #top #top-nav,
+  #top .top-navigation {
+    display: block;
+  }
+  #top #top-nav h3,
+  #top .top-navigation h3 {
+    display: none;
+  }
+  #top ul.nav {
+    font-size: 1em;
+    /* LEVEL 2 */
+  
+    /* LEVEL 3 */
+  
+  }
+  #top ul.nav > li a {
+    border-right: 1px solid #444;
+    color: #eee;
+  }
+  #top ul.nav > li a:hover {
+    background: #555;
+  }
+  #top ul.nav > li:first-child a {
+    border-left: 1px solid #444;
+  }
+  #top ul.nav > li:hover {
+    background: #555;
+  }
+  #top ul.nav li.current-menu-item > a {
+    background: #666;
+  }
+  #top ul.nav ul {
+    background: #555;
+  }
+  /* 3. MAIN NAVIGATION DROPDOWN MENUS (Add main navigation presentational styles here) */
+  /**
+  	 * Resets
+  	 * As the mobile nav features extensive styling, much of it needs to be reset for desktop orientation
+  	 */
+  .show-nav #inner-wrapper {
+    -webkit-border-radius: 0;
+    border-radius: 0;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+  }
+  .show-nav #navigation .top-navigation {
+    display: none;
+  }
+  /**
+  	 * The main navigation styling
+  	 */
+  #navigation {
+    position: relative;
+    left: auto;
+    float: right;
+    padding-top: 0;
+    background: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    clear: none;
+  }
+  #navigation .menus {
+    float: right;
+  }
+  #navigation .menus:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    overflow: hidden;
+    clear: both;
+  }
+  #navigation .menus h3 {
+    display: none;
+  }
+  #navigation ul.nav {
+    display: inline;
+    /* LEVEL 2 */
+  
+    /* LEVEL 3 */
+  
+  }
+  #navigation ul.nav > li {
+    border-right: 1px solid #5c5c5c;
+  }
+  #navigation ul.nav > li:first-child {
+    border-left: 1px solid #5c5c5c;
+  }
+  #navigation ul.nav > li a:hover {
+    color: #9b9b9b;
+  }
+  #navigation ul.nav > li:hover {
+    color: #9b9b9b;
+  }
+  #navigation ul.nav > li.current-menu-item a {
+    color: #9b9b9b;
+  }
+  #navigation ul.nav li a {
+    padding: 1.9em 1.470588235em;
+    text-shadow: none;
+    border: 0;
+    color: #fafafa;
+    font-size: 1.214285714em;
+  }
+  #navigation ul.nav li.current-menu-item > a {
+    background: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    text-shadow: none;
+  }
+  #navigation ul.nav li.current-menu-item > a:after {
+    display: none;
+  }
+  #navigation ul.nav li ul a,
+  #navigation ul.nav li ul ul li a {
+    padding: .857em 1em;
+  }
+  #navigation ul.nav ul {
+    background: #252525;
+    -webkit-border-radius: 0.327em;
+    border-radius: 0.327em;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    width: 13em;
+  }
+  #navigation ul.nav ul li {
+    border-bottom: 1px solid #3d3d3d;
+  }
+  #navigation ul.nav ul li:last-child {
+    border: 0;
+  }
+  #navigation ul.nav ul li a {
+    font-size: 1em;
+  }
+  #navigation ul.nav ul:before {
+    content: '';
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 7px 7px 7px;
+    border-color: transparent transparent #252525 transparent;
+    position: absolute;
+    left: 47%;
+    z-index: 10000;
+    top: -7px;
+  }
+  #navigation ul.nav ul:after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: -20px;
+    position: absolute;
+    background: transparent;
+    z-index: -1;
+  }
+  #navigation ul.nav ul ul {
+    -webkit-border-radius: 0 0.327em 0.327em 0.327em;
+    border-radius: 0 0.327em 0.327em 0.327em;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    top: -1px;
+    left: 100%;
+  }
+  #navigation ul.nav ul ul:after,
+  #navigation ul.nav ul ul:before {
+    content: none;
+  }
+  #navigation ul.nav li > ul {
+    top: 100%;
+  }
+  #navigation ul.nav li:hover > ul {
+    top: 115%;
+  }
+  #navigation ul.nav li:hover > ul ul {
+    top: 0;
+  }
+  #navigation .widget_product_search {
+    margin-bottom: 1.618em;
+    border: 0;
+  }
+  #navigation .widget_product_search #searchform {
+    border: 1px solid #dcdcdc;
+    padding: 0;
+    background: none;
+  }
+  #navigation .widget_product_search #searchform #s {
+    padding: .857em 2.618em .857em .857em;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    background: none;
+    border: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+  #navigation .widget_product_search #searchform #searchsubmit {
+    display: inline-block;
+  }
+  #navigation ul.cart li:first-child,
+  #navigation ul.rss li:first-child {
+    border-left: 0;
+  }
+  #navigation .nav-close,
+  #navigation .nav-home {
+    display: none;
+  }
+  .nav-toggle {
+    display: none;
+  }
+  .csstransforms3d.csstransitions #navigation,
+  .csstransforms3d.csstransitions .show-nav #navigation,
+  .csstransforms3d.csstransitions .show-nav #inner-wrapper {
+    left: 0;
+    -webkit-transform: translate3d(0%, 0, 0);
+    -moz-transform: translate3d(0%, 0, 0);
+    -ms-transform: translate3d(0%, 0, 0);
+    -o-transform: translate3d(0%, 0, 0);
+    transform: translate3d(0%, 0, 0);
+  }
+  /* 4. CONTAINERS & COLUMNS */
+  #header {
+    position: relative;
+    z-index: 1;
+    padding: 0;
+  }
+  #header #logo {
+    margin: 2.244em 0 0;
+  }
+  #header .site-header {
+    float: left;
+  }
+  #header .site-header h1,
+  #header .site-header h2,
+  #header .site-header h3 {
+    float: none;
+  }
+  #header .site-header.with-description .site-title {
+    margin-top: .618em;
+  }
+  #header .site-title,
+  #header .site-description {
+    text-align: left;
+  }
+  #header .site-title {
+    margin: .857em 0 0;
+  }
+  #header ul.rss {
+    margin-right: 0;
+    padding-right: 0;
+  }
+  #header ul.rss > li:first-child {
+    border-left: 0;
+  }
+  #header ul.rss li {
+    border-right: 1px solid #797979;
+  }
+  #main.fullwidth,
+  .layout-full #main,
+  .col-full {
+    max-width: 81.428571429em;
+    margin: 0 auto;
+    width: 100%;
+  }
+  #main {
+    width: 71.05%;
+  }
+  #sidebar {
+    margin-top: 0;
+    width: 22.2%;
+  }
+  .entry img {
+    max-width: 100%;
+  }
+  .single .post .entry-meta {
+    width: 20%;
+    float: left;
+  }
+  .single .post .entry {
+    width: 76%;
+    float: right;
+  }
+  .layout-full .entry img {
+    max-width: 100%;
+  }
+  .layout-right-content #main {
+    float: right;
+  }
+  .layout-right-content #sidebar {
+    float: left;
+  }
+  .layout-full #main {
+    width: 100%;
+  }
+  .col-left {
+    float: left;
+  }
+  .col-right {
+    float: right;
+  }
+  .page-template-template-sitemap-php #sitemap-pages,
+  .page-template-template-sitemap-php .product-categories {
+    float: left;
+    width: 48%;
+  }
+  .page-template-template-sitemap-php #sitemap-categories,
+  .page-template-template-sitemap-php .products {
+    float: right;
+    width: 48%;
+  }
+  .page-template-template-sitemap-php #sitemap-posts {
+    clear: both;
+  }
+  .page-template-template-sitemap-php .woocommerce:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    overflow: hidden;
+    clear: both;
+  }
+  .page-template-template-contact-php .location-twitter .col-left {
+    float: left;
+  }
+  .page-template-template-contact-php .location-twitter #office-location {
+    width: 48%;
+    margin: 0 1em 0 0;
+  }
+  .page-template-template-contact-php .location-twitter .contact-social {
+    float: left;
+    width: 48%;
+  }
+  .page-template-template-contact-php .location-twitter .contact-social #twitter {
+    margin: 0;
+  }
+  #top-section header {
+    float: left;
+  }
+  #top-section .widget_search,
+  #top-section .widget_product_search {
+    float: right;
+    width: 23%;
+    margin: 0;
+  }
+  #post-author {
+    padding-left: 3.631em;
+  }
+  #post-author .profile-image {
+    position: absolute;
+    top: 2em;
+    left: -5%;
+    margin: 0 1.618em .382em 0;
+  }
+  /* 5. FOOTER WIDGETS */
+  #footer {
+    float: left;
+    width: 14%;
+  }
+  #footer-widgets {
+    width: 80%;
+    float: right;
+  }
+  #footer-widgets .block {
+    margin-right: 3.8%;
+    float: left;
+  }
+  #footer-widgets.col-1 .block {
+    width: 100%;
+    float: none;
+  }
+  #footer-widgets.col-1 .footer-widget-1 {
+    margin-right: 0;
+  }
+  #footer-widgets.col-2 .block {
+    width: 48%;
+  }
+  #footer-widgets.col-2 .footer-widget-2 {
+    margin-right: 0;
+  }
+  #footer-widgets.col-3 .block {
+    width: 30.75%;
+  }
+  #footer-widgets.col-3 .footer-widget-3 {
+    margin-right: 0;
+  }
+  #footer-widgets.col-4 .block {
+    width: 22.05%;
+  }
+  #footer-widgets.col-4 .footer-widget-4 {
+    margin-right: 0;
+  }
+  .col {
+    float: left;
+    margin-right: 3.8% !important;
+  }
+  .col.first {
+    clear: left;
+  }
+  .col.last {
+    clear: right;
+    margin-right: 0 !important;
+  }
+  .col1 {
+    width: 100%;
+  }
+  .col2 {
+    width: 48%;
+  }
+  .col3 {
+    width: 30.75%;
+  }
+  .col4 {
+    width: 22.05%;
+  }
+  .entry .features:after,
+  .page-template-template-business-php .features:after,
+  .entry .testimonials:after,
+  .page-template-template-business-php .testimonials:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    overflow: hidden;
+    clear: both;
+  }
+  .entry .features .feature,
+  .page-template-template-business-php .features .feature,
+  .entry .testimonials .feature,
+  .page-template-template-business-php .testimonials .feature,
+  .entry .features .quote,
+  .page-template-template-business-php .features .quote,
+  .entry .testimonials .quote,
+  .page-template-template-business-php .testimonials .quote {
+    margin-right: 3.8%;
+    float: left;
+  }
+  .entry .features.columns-2 .feature,
+  .page-template-template-business-php .features.columns-2 .feature,
+  .entry .testimonials.columns-2 .feature,
+  .page-template-template-business-php .testimonials.columns-2 .feature,
+  .entry .features.columns-2 .quote,
+  .page-template-template-business-php .features.columns-2 .quote,
+  .entry .testimonials.columns-2 .quote,
+  .page-template-template-business-php .testimonials.columns-2 .quote {
+    width: 48%;
+  }
+  .entry .features.columns-3 .feature,
+  .page-template-template-business-php .features.columns-3 .feature,
+  .entry .testimonials.columns-3 .feature,
+  .page-template-template-business-php .testimonials.columns-3 .feature,
+  .entry .features.columns-3 .quote,
+  .page-template-template-business-php .features.columns-3 .quote,
+  .entry .testimonials.columns-3 .quote,
+  .page-template-template-business-php .testimonials.columns-3 .quote {
+    width: 30.75%;
+  }
+  .entry .features.columns-4 .feature,
+  .page-template-template-business-php .features.columns-4 .feature,
+  .entry .testimonials.columns-4 .feature,
+  .page-template-template-business-php .testimonials.columns-4 .feature,
+  .entry .features.columns-4 .quote,
+  .page-template-template-business-php .features.columns-4 .quote,
+  .entry .testimonials.columns-4 .quote,
+  .page-template-template-business-php .testimonials.columns-4 .quote {
+    width: 22.05%;
+  }
+  /* Homepage */
+  .homepage-area .home-section {
+    padding: 5.874em 0;
+  }
+  .homepage-area .widget_woothemes_testimonials .quote,
+  .homepage-area .widget_woothemes_features .quote,
+  .homepage-area .widget_woothemes_testimonials .feature,
+  .homepage-area .widget_woothemes_features .feature {
+    width: 22.05%;
+    float: left;
+    margin-right: 3.8%;
+    margin-bottom: 0;
+  }
+  .homepage-area .widget_woothemes_testimonials .quote:nth-child(4n+1),
+  .homepage-area .widget_woothemes_features .quote:nth-child(4n+1),
+  .homepage-area .widget_woothemes_testimonials .feature:nth-child(4n+1),
+  .homepage-area .widget_woothemes_features .feature:nth-child(4n+1) {
+    clear: left;
+  }
+  .homepage-area .widget_woothemes_testimonials .quote:nth-child(4n+4),
+  .homepage-area .widget_woothemes_features .quote:nth-child(4n+4),
+  .homepage-area .widget_woothemes_testimonials .feature:nth-child(4n+4),
+  .homepage-area .widget_woothemes_features .feature:nth-child(4n+4) {
+    clear: right;
+    margin: 0;
+  }
+  .homepage-area .widget_woothemes_features {
+    padding-top: 5.874em;
+  }
+  #promotion .section-wrapper {
+    padding: 4.236em 0;
+  }
+  #promotion .left-section {
+    width: 70%;
+    float: left;
+  }
+  #promotion .right-section {
+    float: right;
+  }
+  #promotion .btn {
+    display: inline;
+  }
+  .widget_woo_contactform p.contact-name,
+  .widget_woo_contactform p.contact-email {
+    width: 48%;
+    float: left;
+    margin-right: 3.8%;
+  }
+  .widget_woo_contactform p.contact-email {
+    margin-right: 0;
+    clear: right;
+  }
+  .widget_woo_contactform p.contact-submit input {
+    width: auto;
+  }
+  #category-posts {
+    padding: 5.874em 0 3.631em;
+  }
+  #category-posts .category {
+    margin: 0 0 2.618em;
+  }
+  #featured-products {
+    padding-top: 5.874em;
+  }
+  #featured-products ul.products li.product {
+    width: 22.05%;
+  }
+  #homepage-columns .col {
+    margin-bottom: 0;
+  }
+  .widget_woodojo_tabs ul.nav-tabs li a,
+  .woocommerce_tabs ul.nav-tabs li a,
+  .woocommerce-tabs ul.nav-tabs li a,
+  .widget_woodojo_tabs ul.tabs li a,
+  .woocommerce_tabs ul.tabs li a,
+  .woocommerce-tabs ul.tabs li a {
+    font-size: 1.214285714em;
+  }
+  /* 6. IE FIXES */
+  .ie7 #top-nav {
+    position: relative;
+    z-index: 9999999;
+  }
+  .ie7 #header {
+    position: relative;
+    z-index: 9999999;
+  }
+  /* 7. FEATURED SLIDER */
+  #featured-slider {
+    margin: 0;
+  }
+  #featured-slider .slide {
+    background-image: url(../images/bg-slider.png);
+  }
+  #featured-slider .slide-media {
+    max-width: 67%;
+    margin: 2.244em auto 0;
+  }
+  #featured-slider .slide-content {
+    max-width: 67%;
+    margin: 0 auto;
+    text-align: center;
+    padding: 5.997em 0;
+    background: none;
+  }
+  #featured-slider .slide-content header h1 {
+    font-size: 2.618em;
+  }
+  #featured-slider .slide-content .entry {
+    font-size: 1.387em;
+  }
+  #featured-slider .slide-content .woothemes_progress_bar {
+    max-width: 60%;
+    margin: 0 auto;
+  }
+  #featured-slider .flex-direction-nav .flex-prev {
+    left: 2.244em;
+  }
+  #featured-slider .flex-direction-nav .flex-next {
+    right: 2.244em;
+  }
+  #featured-slider .flex-direction-nav a {
+    top: 50%;
+  }
+  #featured-slider .flex-control-nav {
+    bottom: 1.618em;
+    top: auto;
+  }
+}
